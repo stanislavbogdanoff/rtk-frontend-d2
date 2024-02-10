@@ -50,3 +50,14 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
 }
+
+.data-input-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+}
+
+.data-input-box input {
+}

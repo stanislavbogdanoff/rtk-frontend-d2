@@ -17,12 +17,20 @@ export const usersApi = createApi({
       }),
       invalidatesTags: ["Users"],
     }),
-    // updateUser: builder.mutation({
-    //   query: ({ userId, userData }) => ({
-    //     url: `/user/${userId}`,
-    //     body: userData
-    //   })
-    // })
+    updateUser: builder.mutation({
+      query: ({ userId, userData }) => ({
+        url: `/user/${userId}`,
+        body: userData,
+      }),
+    }),
+    createUser: builder.mutation({
+      query: (userData) => ({
+        url: "/users",
+        method: "POST",
+        body: userData,
+      }),
+      invalidatesTags: ["Users"],
+    }),
   }),
   tagTypes: ["Users"],
 });
@@ -33,4 +41,5 @@ export const {
   useLazyGetUsersQuery,
   // DELETE /users/:userId
   useDeleteUserMutation,
+  useCreateUserMutation,
 } = usersApi;
