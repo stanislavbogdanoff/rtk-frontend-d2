@@ -4,16 +4,23 @@ import {
   useCreateUserMutation,
   useDeleteUserMutation,
   useGetUsersQuery,
+  useLazySearchUsersQuery,
 } from "./redux/api/usersApi";
 
 function App() {
   const [userData, setUserData] = useState({
-    name: "",
+    name: null,
     age: null,
-    jobTitle: "",
+    jobTitle: null,
   });
 
-  console.log(userData);
+  const [searchString, setSearchString] = useState("");
+
+  console.log(searchString);
+
+  const [createUser] = useCreateUserMutation();
+
+  console.log("user data =>", userData);
 
   const [
     deleteUser,
@@ -31,49 +38,65 @@ function App() {
     isError: usersIsError,
   } = useGetUsersQuery();
 
-  console.log(
-    "users data from backend",
-    usersIsLoading,
-    usersIsFetching,
-    usersIsError,
-    usersData
-  );
-
-  const [createUser] = useCreateUserMutation();
-
   // if (usersIsFetching || usersIsLoading) {
   //   return <h1>Data is still loading...</h1>;
   // }
+
+  const [searchUsers] = useLazySearchUsersQuery();
 
   return (
     <>
       <h1>RTK Query App</h1>
 
-      <div className="data-input-box">
-        <h2>Input New User Data:</h2>
+      <div>
+        <h2>Search Users:</h2>
+        <input
+          type="text"
+          placeholder="name OR job title"
+          value={searchString}
+          onChange={(event) => setSearchString(event.target.value)}
+        />
+        <button onClick={() => searchUsers(searchString)}>Search</button>
+      </div>
+
+      <div className="input-box">
+        <h2>New User Data Input</h2>
         <input
           type="text"
           placeholder="name"
-          onChange={(e) => {
-            // spread operator
-            setUserData({ ...userData, name: e.target.value });
+          value={userData.name}
+          onChange={(event) => {
+            setUserData({ ...userData, name: event.target.value });
           }}
         />
         <input
           type="number"
           placeholder="age"
-          onChange={(e) => {
-            setUserData({ ...userData, age: Number(e.target.value) });
+          value={userData.age}
+          onChange={(event) => {
+            setUserData({ ...userData, age: Number(event.target.value) });
           }}
         />
         <input
           type="text"
           placeholder="job title"
-          onChange={(e) => {
-            setUserData({ ...userData, jobTitle: e.target.value });
+          value={userData.jobTitle}
+          onChange={(event) => {
+            setUserData({ ...userData, jobTitle: event.target.value });
           }}
         />
-        <button onClick={() => createUser(userData)}>Create User</button>
+        <button
+          onClick={() => {
+            createUser(userData);
+            setUserData({
+              name: null,
+              age: null,
+              jobTitle: null,
+            });
+          }}
+        >
+          Create User
+        </button>
       </div>
 
       <div className="users-box">

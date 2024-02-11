@@ -10,6 +10,13 @@ export const usersApi = createApi({
       }),
       providesTags: ["Users"],
     }),
+    searchUsers: builder.query({
+      query: (searchString) => ({
+        url: "/users/search",
+        params: { searchString },
+      }),
+      providesTags: ["Users"],
+    }),
     deleteUser: builder.mutation({
       query: (userId) => ({
         url: `/users/${userId}`,
@@ -42,4 +49,5 @@ export const {
   // DELETE /users/:userId
   useDeleteUserMutation,
   useCreateUserMutation,
+  useLazySearchUsersQuery,
 } = usersApi;
