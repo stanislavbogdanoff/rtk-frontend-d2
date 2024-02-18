@@ -5,8 +5,11 @@ export const usersApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: () => ({
+      query: (token) => ({
         url: "/users",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }),
       providesTags: ["Users"],
     }),
