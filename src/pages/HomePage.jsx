@@ -8,8 +8,6 @@ import {
 import { useUser } from "../hooks/useUser";
 
 const HomePage = () => {
-  const user = useUser();
-  console.log(user, "user");
   const [userData, setUserData] = useState({
     name: null,
     age: null,
@@ -29,12 +27,15 @@ const HomePage = () => {
     },
   ] = useDeleteUserMutation();
 
+  const user = useUser();
+  console.log("USER => ", user);
+
   const {
     data: usersData,
     isLoading: usersIsLoading,
     isFetching: usersIsFetching,
     isError: usersIsError,
-  } = useGetUsersQuery({ token: user?.token });
+  } = useGetUsersQuery(user?.token);
 
   const [searchUsers] = useLazySearchUsersQuery();
 

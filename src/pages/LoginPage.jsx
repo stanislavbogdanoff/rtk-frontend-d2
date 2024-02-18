@@ -6,6 +6,8 @@ const LoginPage = () => {
     name: null,
     password: null,
   });
+
+  console.log(credentials);
   const [login] = useLoginMutation();
   return (
     <div>
