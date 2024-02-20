@@ -7,9 +7,11 @@ const AdminPage = () => {
 
   // const user = useUser();
 
-  // console.log(user, "admin page");
+  // if (!user) {
+  //   return <h1 className="alert">!!!ACCESS RESTRICTED!!!</h1>;
+  // }
 
-  return <div>AdminPage</div>;
+  return <h2>Admin Page</h2>;
 };
 
 export default AdminPage;

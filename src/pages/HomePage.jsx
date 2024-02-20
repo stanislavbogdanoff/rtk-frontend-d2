@@ -28,6 +28,7 @@ const HomePage = () => {
   ] = useDeleteUserMutation();
 
   const user = useUser();
+
   console.log("USER => ", user);
 
   const {

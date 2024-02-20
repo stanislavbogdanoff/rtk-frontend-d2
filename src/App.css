@@ -68,3 +68,8 @@
   gap: 10px;
   margin: 50px 0;
 }
+
+.alert {
+  font-size: 48px;
+  color: red;
+}
