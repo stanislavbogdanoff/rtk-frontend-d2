@@ -6,6 +6,7 @@ import {
   useLazySearchUsersQuery,
 } from "../redux/api/usersApi";
 import { useUser } from "../hooks/useUser";
+import ProductForm from "../components/ProductForm";
 
 const HomePage = () => {
   const [userData, setUserData] = useState({
@@ -29,8 +30,6 @@ const HomePage = () => {
 
   const user = useUser();
 
-  console.log("USER => ", user);
-
   const {
     data: usersData,
     isLoading: usersIsLoading,
@@ -47,6 +46,8 @@ const HomePage = () => {
   return (
     <>
       <h1>RTK Query App</h1>
+
+      <ProductForm />
 
       <div>
         <h2>Search Users:</h2>

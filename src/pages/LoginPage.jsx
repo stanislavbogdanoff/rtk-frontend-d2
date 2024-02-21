@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoginMutation } from "../redux/api/authApi";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     name: null,
     password: null,
   });
 
   console.log(credentials);
-  const [login] = useLoginMutation();
+  const [login, { isSuccess: loginSuccess }] = useLoginMutation();
+
+  useEffect(() => {
+    if (loginSuccess) navigate("/");
+  }, [loginSuccess, navigate]);
+
   return (
     <div>
       <h1>Enter your credentials</h1>
