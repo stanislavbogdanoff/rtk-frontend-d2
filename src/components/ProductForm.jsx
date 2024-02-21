@@ -22,6 +22,7 @@ const ProductForm = () => {
     formData.append("price", price);
     formData.append("image", image);
     formData.append("token", user.token);
+    formData.append("numbers", JSON.stringify([1, 2, 3]));
 
     try {
       // Handle success or redirect
@@ -33,7 +34,7 @@ const ProductForm = () => {
   };
 
   return (
-    <div>
+    <div className="input-box">
       <input
         type="text"
         placeholder="Name"
