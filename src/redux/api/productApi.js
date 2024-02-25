@@ -14,7 +14,12 @@ export const productApi = createApi({
         body: body,
       }),
     }),
+    getProducts: builder.query({
+      query: () => ({
+        url: "/products",
+      }),
+    }),
   }),
 });
 
-export const { useCreateProductMutation } = productApi;
+export const { useCreateProductMutation, useGetProductsQuery } = productApi;
