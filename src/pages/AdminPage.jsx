@@ -18,22 +18,24 @@ const AdminPage = () => {
   return (
     <>
       <h2>Admin Page</h2>
-      <div className="example">Example</div>
-      <GenresList genres={genres} />
+      <h3 className="example">Example</h3>
+      {/* <GenresList genres={genres} /> */}
       {productsList?.map((prod) => {
         return (
           <div
             key={prod._id}
             style={{
-              backgroundImage: `url('http://localhost:5000/${prod?.image
+              backgroundImage: `url("http://localhost:5000/${prod?.img
                 ?.split("\\")
-                ?.join("/")}')`,
-              width: "500px",
-              height: "500px",
+                ?.join("/")}")`,
             }}
           >
             {prod.name}
-            <img src={`http://localhost:5000/${prod.image}`} alt="" />
+            <img
+              src={`http://localhost:5000/${prod.image}`}
+              style={{ width: "100px", height: "100px" }}
+              alt=""
+            />
           </div>
         );
       })}

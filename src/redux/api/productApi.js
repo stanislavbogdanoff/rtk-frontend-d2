@@ -9,6 +9,7 @@ export const productApi = createApi({
         url: "/products",
         method: "POST",
         headers: {
+          // CAN'T use body.token because not JSON, but FormData
           Authorization: `Bearer ${body.get("token")}`,
         },
         body: body,

@@ -7,6 +7,7 @@ const ProductForm = () => {
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [amount, setAmount] = useState("");
 
@@ -20,9 +21,10 @@ const ProductForm = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
+    // Приделываем картинку
     formData.append("image", image);
+    formData.append("amount", amount);
     formData.append("token", user.token);
-    formData.append("numbers", JSON.stringify([1, 2, 3]));
 
     try {
       // Handle success or redirect
@@ -44,14 +46,20 @@ const ProductForm = () => {
       <input
         type="text"
         placeholder="Description"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
       />
       <input
         type="number"
         placeholder="Price"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
+      />
+      <input
+        type="number"
+        placeholder="Amount"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
       />
       <input type="file" accept="image/*" onChange={handleFileChange} />
       <button onClick={handleSubmit}>Submit</button>
