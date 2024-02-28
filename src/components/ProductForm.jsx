@@ -61,7 +61,12 @@ const ProductForm = () => {
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
       />
-      <input type="file" accept="image/*" onChange={handleFileChange} />
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        multiple="true"
+      />
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );

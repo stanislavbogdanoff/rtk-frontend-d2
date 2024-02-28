@@ -8,6 +8,7 @@ import {
 import { useUser } from "../hooks/useUser";
 import ProductForm from "../components/ProductForm";
 import UsersList from "../components/UsersList";
+import DynamicInputs from "../components/DynamicInputs";
 
 const HomePage = () => {
   const [userData, setUserData] = useState({
@@ -48,7 +49,9 @@ const HomePage = () => {
     <>
       <h1>RTK Query App</h1>
 
-      <ProductForm />
+      <DynamicInputs />
+
+      {/* <ProductForm />
 
       <div>
         <h2>Search Users:</h2>
@@ -105,7 +108,7 @@ const HomePage = () => {
         usersData={usersData}
         userIsDeleting={userIsDeleting}
         deleteUser={deleteUser}
-      />
+      /> */}
     </>
   );
 };
