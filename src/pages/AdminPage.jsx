@@ -3,9 +3,10 @@ import { useUser } from "../hooks/useUser";
 import { useAccess } from "../hooks/useAccess";
 import GenresList from "../components/GenresList";
 import { useGetProductsQuery } from "../redux/api/productApi";
+import { useAdmin } from "../hooks/useAdmin";
 
 const AdminPage = () => {
-  useAccess();
+  useAdmin();
 
   const genres = ["action", "horror", "adventures"];
 
