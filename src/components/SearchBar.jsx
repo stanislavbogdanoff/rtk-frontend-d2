@@ -11,7 +11,12 @@ const SearchBar = ({ initialSearchString }) => {
         value={searchString}
         onChange={(e) => setSearchString(e.target.value)}
       />
-      <Link to={`/search?searchString=${searchString}`}>Search</Link>
+      <Link
+        to={`/search?searchString=${searchString}`}
+        className="pulse bounce"
+      >
+        Search
+      </Link>
     </div>
   );
 };
