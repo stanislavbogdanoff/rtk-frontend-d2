@@ -1,9 +1,5 @@
-import React from "react";
-import { useUser } from "../hooks/useUser";
-import { useAccess } from "../hooks/useAccess";
-import GenresList from "../components/GenresList";
-import { useGetProductsQuery } from "../redux/api/productApi";
-import { useAdmin } from "../hooks/useAdmin";
+import { useGetProductsQuery } from "../../redux/api/productApi";
+import { useAdmin } from "../../hooks/useAdmin";
 
 const AdminPage = () => {
   useAdmin();
@@ -17,7 +13,7 @@ const AdminPage = () => {
   });
 
   return (
-    <>
+    <main>
       <h2>Admin Page</h2>
       <h3 className="example">Example</h3>
       {/* <GenresList genres={genres} /> */}
@@ -40,7 +36,7 @@ const AdminPage = () => {
           </div>
         );
       })}
-    </>
+    </main>
   );
 };
 

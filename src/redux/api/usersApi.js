@@ -4,6 +4,45 @@ export const usersApi = createApi({
   reducerPath: "usersApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
   endpoints: (builder) => ({
+    addItemToCart: builder.mutation({
+      query: ({ token, ...productData }) => ({
+        url: "/users/cart",
+        method: "POST",
+        body: productData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["User", "Cart"],
+    }),
+    getItemsNumberInCart: builder.query({
+      query: (token) => ({
+        url: "/users/cart/amount",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      providesTags: ["Cart"],
+    }),
+    getUserDetails: builder.query({
+      query: (token) => ({
+        url: "/users/details",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      providesTags: ["User"],
+    }),
+    postGetUserProfile: builder.mutation({
+      query: ({ token, ...reqUserId }) => ({
+        url: "/users/profile",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: { reqUserId },
+      }),
+      invalidatesTags: ["User"],
+    }),
     getUsers: builder.query({
       query: (token) => ({
         url: "/users",
@@ -42,7 +81,7 @@ export const usersApi = createApi({
       invalidatesTags: ["Users"],
     }),
   }),
-  tagTypes: ["Users"],
+  tagTypes: ["Users", "User", "Cart"],
 });
 
 export const {
@@ -53,4 +92,8 @@ export const {
   useDeleteUserMutation,
   useCreateUserMutation,
   useLazySearchUsersQuery,
+  useAddItemToCartMutation,
+  useLazyGetItemsNumberInCartQuery,
+  useGetItemsNumberInCartQuery,
+  useGetUserDetailsQuery,
 } = usersApi;

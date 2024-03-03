@@ -20,7 +20,18 @@ export const productApi = createApi({
         url: "/products",
       }),
     }),
+    searchProducts: builder.query({
+      query: (searchString) => ({
+        url: "/products/search",
+        params: { searchString },
+      }),
+    }),
   }),
 });
 
-export const { useCreateProductMutation, useGetProductsQuery } = productApi;
+export const {
+  useCreateProductMutation,
+  useGetProductsQuery,
+  useSearchProductsQuery,
+  useLazySearchProductsQuery,
+} = productApi;

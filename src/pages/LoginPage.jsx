@@ -17,7 +17,7 @@ const LoginPage = () => {
   }, [loginSuccess, navigate]);
 
   return (
-    <div>
+    <main>
       <h1>Enter your credentials</h1>
       <input
         type="text"
@@ -34,7 +34,7 @@ const LoginPage = () => {
         }}
       />
       <button onClick={() => login(credentials)}>Login</button>
-    </div>
+    </main>
   );
 };
 

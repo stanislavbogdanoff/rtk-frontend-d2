@@ -1,55 +1,24 @@
-import { useState } from "react";
-import {
-  useCreateUserMutation,
-  useDeleteUserMutation,
-  useGetUsersQuery,
-  useLazySearchUsersQuery,
-} from "../redux/api/usersApi";
-import { useUser } from "../hooks/useUser";
-import ProductForm from "../components/ProductForm";
-import UsersList from "../components/UsersList";
-import DynamicInputs from "../components/DynamicInputs";
+import SearchBar from "../components/SearchBar";
+import { useSearchProductsQuery } from "../redux/api/productApi";
+
+import Product from "../components/Product/Product";
+import ProductsList from "../components/ProductsList/ProductsList";
 
 const HomePage = () => {
-  const [userData, setUserData] = useState({
-    name: null,
-    age: null,
-    jobTitle: null,
-  });
-
-  const [searchString, setSearchString] = useState("");
-
-  const [createUser] = useCreateUserMutation();
-
-  const [
-    deleteUser,
-    {
-      isLoading: userIsDeleting,
-      isSuccess: userIsDeleted,
-      isError: userDeleteSuccess,
-    },
-  ] = useDeleteUserMutation();
-
-  const user = useUser();
-
-  const {
-    data: usersData,
-    isLoading: usersIsLoading,
-    isFetching: usersIsFetching,
-    isError: usersIsError,
-  } = useGetUsersQuery(user?.token);
-
-  const [searchUsers] = useLazySearchUsersQuery();
-
-  if (usersIsFetching || usersIsLoading) {
-    return <h1>Data is still loading...</h1>;
-  }
-
+  const { data: productsList, isFetching: productsIsFetching } =
+    useSearchProductsQuery();
   return (
-    <>
-      <h1>RTK Query App</h1>
+    <main>
+      <h1>E-store</h1>
 
-      <DynamicInputs />
+      <SearchBar />
+
+      <ProductsList
+        productsList={productsList}
+        productsIsFetching={productsIsFetching}
+      />
+
+      {/* <DynamicInputs /> */}
 
       {/* <ProductForm />
 
@@ -109,7 +78,7 @@ const HomePage = () => {
         userIsDeleting={userIsDeleting}
         deleteUser={deleteUser}
       /> */}
-    </>
+    </main>
   );
 };
 

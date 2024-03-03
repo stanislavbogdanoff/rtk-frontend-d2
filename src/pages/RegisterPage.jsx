@@ -7,12 +7,13 @@ const RegisterPage = () => {
     password: null,
     jobTitle: null,
     age: null,
+    role: null,
   });
 
   const [register] = useRegisterMutation();
 
   return (
-    <div>
+    <main>
       <h1>Enter your credentials</h1>
       <div className="input-box">
         <input
@@ -45,7 +46,7 @@ const RegisterPage = () => {
         />
       </div>
       <button onClick={() => register(credentials)}>Register</button>
-    </div>
+    </main>
   );
 };
 
