@@ -8,7 +8,7 @@ const Cart = () => {
   const { data: itemsNumber, isFetching: cartIsFetching } =
     useGetItemsNumberInCartQuery(user?.token);
 
-  if (cartIsFetching) return <>Loading...</>;
+  if (cartIsFetching) return <>Cart is Loading...</>;
 
   return <Link to="/order">Items: {itemsNumber?.amount}</Link>;
 };

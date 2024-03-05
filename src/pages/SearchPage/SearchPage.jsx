@@ -5,17 +5,23 @@ import { useSearchParams } from "react-router-dom";
 
 const SearchPage = () => {
   const [params] = useSearchParams();
-  //   console.log(params.get("searchString"));
-  const { data: productsList, isFetching: productsIsFetching } =
-    useSearchProductsQuery(params.get("searchString"));
+
+  params.searchString;
+
+  const {
+    data: productsList,
+    isFetching: productsIsFetching,
+    isSuccess,
+    isLoading,
+    isError,
+  } = useSearchProductsQuery(params.get("searchString"));
+
+  console.log("productsIsFetching", productsIsFetching);
 
   return (
     <main>
       <section className="search_section">
-        <SearchBar
-          initialSearchString={params.get("searchString")}
-          isSearchPage
-        />
+        <SearchBar initialSearchString={params.get("searchString")} />
       </section>
       <section className="product_section">
         <ProductsList

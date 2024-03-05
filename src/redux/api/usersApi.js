@@ -92,7 +92,9 @@ export const {
   useDeleteUserMutation,
   useCreateUserMutation,
   useLazySearchUsersQuery,
+  // POST /users/cart
   useAddItemToCartMutation,
+  // GET /users/cart/amount
   useLazyGetItemsNumberInCartQuery,
   useGetItemsNumberInCartQuery,
   useGetUserDetailsQuery,

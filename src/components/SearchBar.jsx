@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 const SearchBar = ({ initialSearchString }) => {
   const [searchString, setSearchString] = useState(initialSearchString);
 
+  console.log("search string => ", searchString);
+
   return (
     <div>
       <input
@@ -13,7 +15,7 @@ const SearchBar = ({ initialSearchString }) => {
       />
       <Link
         to={`/search?searchString=${searchString}`}
-        className="pulse bounce"
+        // className="pulse bounce"
       >
         Search
       </Link>

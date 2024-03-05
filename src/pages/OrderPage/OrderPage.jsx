@@ -13,25 +13,25 @@ const OrderPage = () => {
   const user = useUser();
   const navigate = useNavigate();
   const { data: userData } = useGetUserDetailsQuery(user?.token);
+
+  // Понадобится для изменения состояние корзины
   const [cartProductsList, setCartProductsList] = useState(
     userData?.cart || []
   );
 
-  console.log("cartProductsListc", cartProductsList);
-
+  // Понадобится для изменения состояние корзины
   useEffect(() => {
     if (userData) setCartProductsList(userData.cart);
   }, [userData]);
 
   const [createOrder, { isSuccess: orderIsSuccess }] = useCreateOrderMutation();
-  const { refetch } = useGetItemsNumberInCartQuery();
 
+  // Перенаправить юзера при успешном выполнении заказа
   useEffect(() => {
-    console.log(`/profile/${user?._id}`);
     if (orderIsSuccess && user?.token) {
-      navigate(`/profile/${user?._id}`);
+      navigate(`/profile`);
     }
-  }, [orderIsSuccess, navigate, user, refetch]);
+  }, [orderIsSuccess, navigate, user]);
 
   return (
     <main>
@@ -42,7 +42,7 @@ const OrderPage = () => {
             <div key={cartProduct?.product?._id} className="order_card">
               <div>Name: {cartProduct?.product?.name}</div>
               <div>Price: {cartProduct?.product?.price}</div>
-              <div>Name: {cartProduct?.amount}</div>
+              <div>Amount: {cartProduct?.amount}</div>
             </div>
           );
         })}
@@ -55,7 +55,7 @@ const OrderPage = () => {
               amount: prod.amount,
             })),
             token: user?.token,
-          }).then(() => refetch(user?.token));
+          });
         }}
       >
         Create Order
