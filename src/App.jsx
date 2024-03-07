@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 import OrderPage from "./pages/OrderPage/OrderPage";
 import UserPage from "./pages/UserPage/UserPage";
 import EditProductPage from "./pages/EditProductPage/EditProductPage";
+import TestPage from "./pages/TestPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/test" element={<TestPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route
             path="/admin/products/edit/:productId"
