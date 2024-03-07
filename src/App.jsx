@@ -8,6 +8,7 @@ import SearchPage from "./pages/SearchPage/SearchPage";
 import Navbar from "./components/Navbar/Navbar";
 import OrderPage from "./pages/OrderPage/OrderPage";
 import UserPage from "./pages/UserPage/UserPage";
+import EditProductPage from "./pages/EditProductPage/EditProductPage";
 
 function App() {
   return (
@@ -17,6 +18,10 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route
+            path="/admin/products/edit/:productId"
+            element={<EditProductPage />}
+          />
           <Route path="/profile" element={<UserPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/search" element={<SearchPage />} />

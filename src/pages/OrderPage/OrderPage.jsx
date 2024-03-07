@@ -26,12 +26,15 @@ const OrderPage = () => {
 
   const [createOrder, { isSuccess: orderIsSuccess }] = useCreateOrderMutation();
 
+  const { refetch } = useGetItemsNumberInCartQuery(user?.token);
+
   // Перенаправить юзера при успешном выполнении заказа
   useEffect(() => {
     if (orderIsSuccess && user?.token) {
-      navigate(`/profile`);
+      refetch();
+      navigate("/profile");
     }
-  }, [orderIsSuccess, navigate, user]);
+  }, [orderIsSuccess, navigate, user, refetch]);
 
   return (
     <main>
