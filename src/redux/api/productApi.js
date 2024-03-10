@@ -13,6 +13,7 @@ export const productApi = createApi({
         },
         body: body,
       }),
+      invalidatesTags: ["Products"],
     }),
     editProduct: builder.mutation({
       query: ({ token, productId, productData }) => ({
@@ -51,9 +52,9 @@ export const productApi = createApi({
       providesTags: ["Product"],
     }),
     searchProducts: builder.query({
-      query: (searchString) => ({
+      query: ({ searchString, page, limit }) => ({
         url: "/products/search",
-        params: { searchString },
+        params: { searchString, page, limit },
       }),
     }),
   }),

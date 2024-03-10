@@ -4,7 +4,30 @@
 #root {
   width: 100%;
   height: 100%;
-  margin: 0 50px;
+}
+
+.primary-btn {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+}
+
+.primary-btn:hover {
+  border-color: #646cff;
 }
 
 @keyframes bounce {
@@ -80,11 +103,6 @@
     transform: translate(-50%, -50%) scale(1);
     transform: translate(-50%, -50%) scale(1.2);
   }
-}
-
-section {
-  text-align: center;
-  padding: 15px;
 }
 
 main {

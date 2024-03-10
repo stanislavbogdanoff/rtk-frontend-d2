@@ -1,22 +1,28 @@
 import SearchBar from "../components/SearchBar";
 import { useSearchProductsQuery } from "../redux/api/productApi";
 
-import Product from "../components/Product/Product";
 import ProductsList from "../components/ProductsList/ProductsList";
+import Section from "../components/Layout/Section";
+import Title from "./Title";
 
 const HomePage = () => {
-  const { data: productsList, isFetching: productsIsFetching } =
-    useSearchProductsQuery();
+  const { data: products, isFetching: productsIsFetching } =
+    useSearchProductsQuery({ searchString: "", limit: 12 });
+
   return (
     <main>
-      <h1>E-store</h1>
+      <Title title={"Home Page"} />
 
-      <SearchBar />
+      <Section>
+        <SearchBar isSearch />
+      </Section>
 
-      <ProductsList
-        productsList={productsList}
-        productsIsFetching={productsIsFetching}
-      />
+      <Section>
+        <ProductsList
+          productsList={products?.data}
+          productsIsFetching={productsIsFetching}
+        />
+      </Section>
     </main>
   );
 };

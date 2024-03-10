@@ -17,16 +17,17 @@ const Product = ({ product, isAdmin }) => {
       <div>Name: {product.name}</div>
       <p>Price: {product.price}</p>
       {!isAdmin ? (
-        <>
-          <div>
-            <button onClick={() => setCount(count + 1)}>+1</button>
-            <h2>{count}</h2>
+        <div className="product_counter">
+          <div className="count_btns">
             <button
               onClick={() => setCount(count - 1)}
               disabled={count === 0 ? true : false}
             >
               -1
             </button>
+            <h2>{count}</h2>
+
+            <button onClick={() => setCount(count + 1)}>+1</button>
           </div>
           <button
             onClick={() =>
@@ -39,11 +40,16 @@ const Product = ({ product, isAdmin }) => {
           >
             Add to cart
           </button>
-          <button>Wishlist</button>
-        </>
+          {/* <button>Wishlist</button> */}
+        </div>
       ) : (
         <>
-          <Link to={`/admin/products/edit/${product._id}`}>Edit</Link>
+          <Link
+            className="primary-btn"
+            to={`/admin/products/edit/${product._id}`}
+          >
+            Edit
+          </Link>
           <button
             onClick={() =>
               deleteProduct({ token: user?.token, productId: product._id })

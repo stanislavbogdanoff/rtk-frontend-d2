@@ -11,7 +11,7 @@ const EditProductPage = () => {
   const { productId } = useParams();
   const user = useUser();
 
-  const { data: productData, isFetching: productsIsFetching } =
+  const { data: productData, isFetching: productIsFetching } =
     useGetProductDetailsQuery({ token: user?.token, productId: productId });
 
   const [newProductData, setNewProductData] = useState(productData || {});
